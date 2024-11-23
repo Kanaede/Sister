@@ -1,3 +1,7 @@
-.zMmncolo7H {
-  width: 400px !important;
+.main-banner {
+  width: 100% !important;
+  height: 50vw !important;
+  overflow: hidden;
+  object-fit: cover;
+  filter: brightness(0.4);
 }

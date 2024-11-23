@@ -2,6 +2,18 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/variables-dark";
 @import "../node_modules/bootstrap/scss/maps";
+
+$custom-colors: (
+    "blue": $blue,
+    "indigo": $indigo,
+    "purple": $purple,
+    "pink": $pink,
+    "yellow": $yellow,
+    "teal": $teal
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/utilities";
@@ -11,24 +23,36 @@
 @import "../node_modules/bootstrap/scss/containers";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/helpers";
+
+$all-colors: map-merge-multiple($blues, $indigos, $purples, $pinks, $reds, $oranges, $yellows, $greens, $teals, $cyans);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
 @import "../node_modules/bootstrap/scss/utilities/api";
-
-.navbar-default-color{
-  background-color: $pink-500;
-}
-
-.sis-colors{
-  background-color: $pink-100;
-}
-
-.pink-500{
-  background-color: $pink-500;
-}
 
 .banner-slide{
   background-color: $white;
   width: 100vh;
-  height: 500px;
+  height: 60vh !important;
   object-fit: cover;
   overflow: hidden !important;
+}
+
+.bg-black {
+  background-color: #000;
 }
